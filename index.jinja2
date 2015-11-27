@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>HackerNews</title>
+    <meta name="description" content="This is HackerNews Offline" />
+  </head>
+  <body>
+
+    <div id="title">
+      <h2>HackerNews</h2>
+    </div>
+
+    <div id="content">
+      <ol>
+      {% for item in top_stories %}
+        <a href="{{ item.url }}"><li>{{ item.title }}</li></a>
+      {% endfor %}
+      </ol>
+    </div>
+    
+  </body>
+</html>
