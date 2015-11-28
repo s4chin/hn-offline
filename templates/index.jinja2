@@ -1,9 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" ng-app="hackernews">
   <head>
     <meta charset="UTF-8" />
     <title>HackerNews</title>
     <meta name="description" content="This is HackerNews Offline" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
   </head>
   <body>
 
@@ -12,12 +13,34 @@
     </div>
 
     <div id="content">
-      <ol>
-      {% for item in stories %}
-        <a href="{{ item.url }}"><li>{{ item.title }}</li></a>
-      {% endfor %}
-      </ol>
+      <section ng-init="tab = 1">
+        <ul class="nav nav-pills">
+          <li ng-class="{active:tab === 1}">
+            <a href ng-click="tab = 1">Top Stories</a>
+          </li>
+          <li ng-class="{active:tab === 2}">
+            <a href ng-click="tab = 2">Ask HN</a>
+          </li>
+        </ul>
+
+        <div class="panel" ng-show="tab === 1">
+          <ol>
+          {% for item in top_stories %}
+            <a href="{{ item.url }}"><li>{{ item.title }}</li></a>
+          {% endfor %}
+          </ol>
+        </div>
+        <div class="panel" ng-show="tab === 2">
+          <ol>
+          {% for item in ask_stories %}
+            <a href="{{ item.url }}"><li>{{ item.title }}</li></a>
+          {% endfor %}
+          </ol>
+        </div>
+      </section>
     </div>
-    
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script type="text/javascript" src="./js/app.js"></script>
   </body>
 </html>
